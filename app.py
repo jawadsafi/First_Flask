@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 
 app = Flask(__name__)
 
@@ -6,8 +6,8 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-@app.route('/greeting')
+@app.route('/greeting', methods=['POST'])
 def greeting():
-    name = request.args.get('name')
-    return render_template('greetings.html',name=name)
+    py_name = request.form.get('form_name')
+    return render_template('greetings.html',template_name=py_name)
  
